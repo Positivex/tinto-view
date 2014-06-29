@@ -1,0 +1,23 @@
+{
+  "name": "tinto-view",
+  "main": "tinto-view.js",
+  "version": "0.0.1",
+  "homepage": "https://github.com/TchernoLeRigolo/tinto-view",
+  "authors": [
+    "TchernoLeRigolo", "Positivex"
+  ],
+  "description": "An extension to ng-view to persist the DOM when needed",
+  "keywords": [
+    "angular",
+    "ng-view",
+    "ngRoute"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ]
+}

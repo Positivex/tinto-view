@@ -3,7 +3,7 @@ tinto-view
 
 A customization of ng-view to avoid destroying the created DOM and hide the view instead. This is useful if you don't want the overhead of re-creating the DOM every time the user changes screen!.
 
-Developed for Tinto with @Positivex
+> INSTALL bower install tinto-view --save
 
 ```javascript
 $routeProvider
@@ -27,3 +27,11 @@ The Screen3 DOM will persist and will just be hidden/shown. You can use the 'ent
 		});
 	})
 ```
+
+When building Tinto (Angular/Phonegap application) the main information feed was rather large, and re-creating the DOM every time the user came back to the feed was quite visible and slow. Tinto-view was one of the performance enhancements it took to make it work.
+
+Check [tinto-bind](https://github.com/TchernoLeRigolo/tinto-bind) for more enhancements.
+
+Check the example in the Test folder to see it working.
+
+Developed for Tinto with @Positivex
