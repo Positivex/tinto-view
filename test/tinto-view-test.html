@@ -1,0 +1,46 @@
+<?doctype html?>
+<html ng-app="TintoViewTest">
+	<head>
+		<title>Test of tinto-view</title>
+		<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/angularjs/1.2.18/angular.js"></script>
+		<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/angularjs/1.2.18/angular-route.js"></script>
+
+		<script type="text/javascript" src="../tinto-view.js"></script>
+		<script type="text/javascript" src="tinto-view-test.js"></script>
+	</head>
+	<body ng-controller="MainController as main">
+		<div>
+			<a href="#/screen1">Screen 1</a>
+			<a href="#/screen2">Screen 2</a>
+			<a href="#/screen3">Screen 3</a>
+		</div>
+
+		<div tinto-view>
+		</div>
+
+		<script type="text/ng-template" id="screen1.html">
+			<h1>Screen 1</h1>
+			<span>Last time loaded: </span><span ng-bind="lastTimeLoaded | date: 'HH:mm:ss'"></span>
+			<p>Same behavior as ng-view for this screen</p>
+		</script>
+
+		<script type="text/ng-template" id="screen2.html">
+			<h1>Screen 2</h1>
+			<span>Last time loaded: </span><span ng-bind="lastTimeLoaded | date: 'HH:mm:ss'"></span>
+			<p>Same behavior as ng-view for this screen</p>
+		</script>
+
+		<script type="text/ng-template" id="screen3.html">
+			<h1>Screen 3</h1>
+			<span>Last time loaded: </span><span ng-bind="lastTimeLoaded | date: 'HH:mm:ss'"></span>
+			<p>As you can see the time here will remain set to the first load time.</p>
+			<p>
+				To get notified of enter & leave events use $scope.$on('enter') or $scope.$on('leave')
+			</p>
+			<p><span>Last time you entered: </span><span ng-bind="lastTimeEntered | date: 'HH:mm:ss'"></span></p>
+			<p><span>Last time you left: </span><span ng-bind="lastTimeLeft | date: 'HH:mm:ss'"></span></p>
+			
+
+		</script>
+	</body>
+</html>
