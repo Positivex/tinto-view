@@ -1,6 +1,6 @@
 "use strict";
 
-angular.module("Tinto", ['ngRoute']).directive("tintoView", function($route, $compile, $controller) {
+angular.module("Tinto", ['ngRoute']).directive("tintoView", function($route, $compile, $controller, $window, $timeout, $location, $anchorScroll) {
     return {
         restrict: "ECA",
         terminal: true,
@@ -10,6 +10,15 @@ angular.module("Tinto", ['ngRoute']).directive("tintoView", function($route, $co
             return function(scope, $element, attr) {
                 var currentElement, keepPreviousView;
                 var storedElements = {};
+                var scrollPosCache = {};
+
+                scope.$on('$routeChangeStart', function() {
+                    // store scroll position for the current view
+                    if ($route.current) {
+                        scrollPosCache[$route.current.loadedTemplateUrl] = [$window.pageXOffset, $window.pageYOffset];
+                    }
+                });
+
                 scope.$on("$routeChangeSuccess", update);
                 update();
                 function cleanupLastView() {
@@ -32,6 +41,17 @@ angular.module("Tinto", ['ngRoute']).directive("tintoView", function($route, $co
                             currentElement.remove();
                         }
                         keepPreviousView = $route.current.hideOnly;
+
+                        // if hash is specified explicitly, it trumps previously stored scroll position
+                        if ($location.hash()) {
+                            $anchorScroll();
+                        // else get previous scroll position; if none, scroll to the top of the page
+                        } else {
+                            var prevScrollPos = scrollPosCache[$route.current.loadedTemplateUrl] || [ 0, 0 ];
+                            $timeout(function() {
+                                $window.scrollTo(prevScrollPos[0], prevScrollPos[1]);
+                            }, 0);
+                        }
                         return;
                     }
                     if (typeof storedElements[$route.current.viewName] == "undefined" && keepPreviousView) {
