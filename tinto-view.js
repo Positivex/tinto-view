@@ -95,6 +95,7 @@ angular.module("Tinto", ['ngRoute']).directive("tintoView", function($route, $co
                             newScope.$emit("enter");
                         });
                     } else {
+                        currentElement.remove();
                         cleanupLastView();
                     }
                     if (typeof $route.current != "undefined") {
